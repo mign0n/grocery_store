@@ -74,6 +74,7 @@ warn_unused_configs = true
 warn_unreachable = true
 warn_no_return = true
 disable_error_code = ["var-annotated", "attr-defined"]
+mypy_path = "grocery_store"
 
 [tool.setuptools]
 py-modules = []
