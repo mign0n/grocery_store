@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +11,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# fmt: off
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -18,7 +19,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'djoser',
+
+    'api.apps.ApiConfig',
 ]
+# fmt: on
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,8 +81,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
-LANGUAGE_CODE = 'en-us'
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+DJOSER = {
+    'HIDE_USERS': False,
+    'PERMISSIONS': {
+        'user': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+        'user_me': ['rest_framework.permissions.IsAuthenticated'],
+        'user_list': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+    },
+}
+
+
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
