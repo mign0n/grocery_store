@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'api.apps.ApiConfig',
+    'products.apps.ProductsConfig',
 ]
 # fmt: on
 
@@ -114,3 +115,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CATEGORY_IMAGE_PATH = 'images/category/'
+SUBCATEGORY_IMAGE_PATH = 'images/subcategory/'
+PRODUCT_IMAGE_PATH = 'images/product/'

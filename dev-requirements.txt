@@ -96,6 +96,8 @@ pathspec==0.12.1
     # via black
 pep8-naming==0.14.1
     # via grocery_store (pyproject.toml)
+pillow==10.4.0
+    # via grocery_store (pyproject.toml)
 platformdirs==4.2.2
     # via black
 pycodestyle==2.12.0

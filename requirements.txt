@@ -41,6 +41,8 @@ oauthlib==3.2.2
     # via
     #   requests-oauthlib
     #   social-auth-core
+pillow==10.4.0
+    # via grocery_store (pyproject.toml)
 pycparser==2.22
     # via cffi
 pyjwt==2.8.0
