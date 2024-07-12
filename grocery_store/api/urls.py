@@ -7,6 +7,7 @@ app_name = '%(app_label)s'
 
 router = SimpleRouter()
 router.register('categories', views.CategoryViewSet, basename='category')
+router.register('products', views.ProductsViewSet, basename='product')
 
 urlpatterns = [
     path('', include(router.urls)),

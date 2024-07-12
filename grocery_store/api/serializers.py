@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import AbstractBaseModel, Category, SubCategory
+from products.models import Category, Product, ProductImage, SubCategory
 
 
 class SubCategorySerializer(serializers.ModelSerializer):
@@ -16,8 +16,6 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    sub_category = serializers.SerializerMethodField()
-
     class Meta:
         model = Category
         fields = (
@@ -25,9 +23,41 @@ class CategorySerializer(serializers.ModelSerializer):
             'name',
             'slug',
             'image',
+        )
+
+
+class CategoryWithSubSerializer(CategorySerializer):
+    sub_category = SubCategorySerializer(source='subcategory', many=True)
+
+    class Meta(CategorySerializer.Meta):
+        fields = (
+            *CategorySerializer.Meta.fields,
             'sub_category',
         )
 
-    @staticmethod
-    def get_sub_category(obj: AbstractBaseModel) -> list[dict]:
-        return SubCategorySerializer(obj.subcategory.all(), many=True).data
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = (
+            'id',
+            'image',
+        )
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(source='sub_category.category')
+    sub_category = SubCategorySerializer()
+    images = ProductImageSerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'name',
+            'slug',
+            'category',
+            'sub_category',
+            'price',
+            'images',
+        )
