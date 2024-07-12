@@ -37,7 +37,9 @@ class Migration(migrations.Migration):
                 (
                     'slug',
                     models.SlugField(
-                        max_length=200, unique=True, verbose_name='слаг-имя'
+                        max_length=200,
+                        unique=True,
+                        verbose_name='слаг-имя',
                     ),
                 ),
                 (
@@ -77,7 +79,9 @@ class Migration(migrations.Migration):
                 (
                     'slug',
                     models.SlugField(
-                        max_length=200, unique=True, verbose_name='слаг-имя'
+                        max_length=200,
+                        unique=True,
+                        verbose_name='слаг-имя',
                     ),
                 ),
                 (
@@ -91,7 +95,9 @@ class Migration(migrations.Migration):
                 (
                     'price',
                     models.DecimalField(
-                        decimal_places=2, max_digits=6, verbose_name='цена'
+                        decimal_places=2,
+                        max_digits=6,
+                        verbose_name='цена',
                     ),
                 ),
             ],
@@ -156,7 +162,9 @@ class Migration(migrations.Migration):
                 (
                     'slug',
                     models.SlugField(
-                        max_length=200, unique=True, verbose_name='слаг-имя'
+                        max_length=200,
+                        unique=True,
+                        verbose_name='слаг-имя',
                     ),
                 ),
                 (
@@ -195,7 +203,8 @@ class Migration(migrations.Migration):
         migrations.AddConstraint(
             model_name='cart',
             constraint=models.UniqueConstraint(
-                fields=('owner', 'product'), name='unique_cart_product'
+                fields=('owner', 'product'),
+                name='unique_cart_product',
             ),
         ),
     ]
