@@ -3,14 +3,19 @@ from django.contrib import admin
 from products import models
 
 
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImage
+    extra = 3
+
+
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = (ProductImageInline, )
     list_display = (
         'name',
         'price',
         'sub_category',
         'slug',
-        'image',
     )
 
 
@@ -31,3 +36,4 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug',
         'image',
     )
+

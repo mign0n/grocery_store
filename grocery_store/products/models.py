@@ -62,11 +62,6 @@ class SubCategory(AbstractBaseModel):
 class Product(AbstractBaseModel):
     """Модель продуктов."""
 
-    image = models.ImageField(
-        verbose_name='изображение',
-        upload_to=settings.PRODUCT_IMAGE_PATH,
-        blank=True,
-    )
     price = models.DecimalField(
         verbose_name='цена',
         max_digits=6,
@@ -77,6 +72,21 @@ class Product(AbstractBaseModel):
         on_delete=models.SET_NULL,
         verbose_name='подкатегория продукта',
         null=True,
+    )
+
+
+class ProductImage(models.Model):
+    """Модель изображений продуктов."""
+    image = models.ImageField(
+        verbose_name='изображение',
+        upload_to=settings.PRODUCT_IMAGE_PATH,
+        blank=True,
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name='продукт',
+        related_name='images',
     )
 
 
