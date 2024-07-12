@@ -58,6 +58,8 @@ extend-exclude = [
 [tool.isort]
 profile = "black"
 line_length = 79
+src_paths = "grocery_store"
+known_first_party = ["api", "grocery_store", "products"]
 
 [tool.mypy]
 python_version = "3.12"
