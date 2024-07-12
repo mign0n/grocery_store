@@ -10,7 +10,7 @@ class ProductImageInline(admin.TabularInline):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (ProductImageInline, )
+    inlines = (ProductImageInline,)
     list_display = (
         'name',
         'price',
@@ -36,4 +36,3 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug',
         'image',
     )
-

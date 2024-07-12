@@ -77,6 +77,7 @@ class Product(AbstractBaseModel):
 
 class ProductImage(models.Model):
     """Модель изображений продуктов."""
+
     image = models.ImageField(
         verbose_name='изображение',
         upload_to=settings.PRODUCT_IMAGE_PATH,
