@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
 from django.db import models
 
 User = get_user_model()
@@ -103,6 +104,11 @@ class Cart(models.Model):
         Product,
         on_delete=models.CASCADE,
         verbose_name='продукт',
+    )
+    amount = models.PositiveSmallIntegerField(
+        verbose_name='количество продукта в корзине',
+        default=1,
+        validators=(MinValueValidator(1),),
     )
 
     class Meta:
