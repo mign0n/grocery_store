@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import OrderedDict
 
+from django.db import models
 from rest_framework import serializers
 
 from products.models import Cart, Category, Product, ProductImage, SubCategory
@@ -33,6 +34,7 @@ class CategoryWithSubSerializer(CategorySerializer):
     sub_category = SubCategorySerializer(source='subcategory', many=True)
 
     class Meta:
+        model = SubCategory
         fields = (
             *CategorySerializer.Meta.fields,
             'sub_category',
@@ -68,7 +70,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    item_cost = serializers.SerializerMethodField()
 
     class Meta:
         model = Cart
@@ -77,12 +78,8 @@ class CartSerializer(serializers.ModelSerializer):
             'owner',
             'product',
             'amount',
-            'item_cost',
         )
         read_only_fields = ('id',)
-
-    def get_item_cost(self, obj: Cart) -> Decimal:
-        return obj.product.price * obj.amount
 
     def validate(self, attrs: OrderedDict) -> OrderedDict:
         product = attrs.get('product')
@@ -98,3 +95,26 @@ class CartSerializer(serializers.ModelSerializer):
                 'The fields owner, product must make a unique set.',
             )
         return attrs
+
+
+class CartListSerializer(serializers.Serializer):
+    count = serializers.SerializerMethodField()
+    total_price = serializers.SerializerMethodField()
+    items = serializers.SerializerMethodField()
+
+    class Meta:
+        fields = (
+            'count',
+            'total_price',
+            'items',
+        )
+
+    def get_count(self, obj: models.Model) -> int:
+        return self.context['count']
+
+    def get_total_price(self, obj: models.Model) -> Decimal:
+        return self.context['total_price']
+
+    @staticmethod
+    def get_items(obj: models.Model) -> list[models.Model]:
+        return [item for item in obj]

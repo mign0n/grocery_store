@@ -124,6 +124,6 @@ class Cart(models.Model):
         return '{}: pk={}, owner={}, product={}'.format(
             type(self).__name__,
             self.pk,
-            self.owner.name,
+            self.owner.username,
             self.product.name,
         )
