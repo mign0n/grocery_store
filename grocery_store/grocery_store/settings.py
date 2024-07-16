@@ -25,6 +25,8 @@ INSTALLED_APPS = [
 
     'api.apps.ApiConfig',
     'products.apps.ProductsConfig',
+
+    'drf_spectacular',
 ]
 # fmt: on
 
@@ -91,6 +93,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {

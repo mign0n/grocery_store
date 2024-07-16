@@ -21,4 +21,4 @@ class IsOwner(permissions.BasePermission):
         view: ModelViewSet,
         obj: Model,
     ) -> bool:
-        return obj.owner == request.user,
+        return obj.owner == request.user

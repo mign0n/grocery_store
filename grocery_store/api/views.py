@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from api import serializers
-from api.permissions import ReadOnly, IsOwner
+from api.permissions import IsOwner, ReadOnly
 from products.models import Cart, Category, Product
 
 

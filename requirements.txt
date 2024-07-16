@@ -6,6 +6,10 @@
 #
 asgiref==3.8.1
     # via django
+attrs==23.2.0
+    # via
+    #   jsonschema
+    #   referencing
 certifi==2024.7.4
     # via requests
 cffi==1.16.0
@@ -23,6 +27,7 @@ django==5.0.7
     #   djangorestframework
     #   djangorestframework-simplejwt
     #   djoser
+    #   drf-spectacular
     #   grocery_store (pyproject.toml)
     #   social-auth-app-django
 django-templated-mail==1.1.1
@@ -30,13 +35,22 @@ django-templated-mail==1.1.1
 djangorestframework==3.15.2
     # via
     #   djangorestframework-simplejwt
+    #   drf-spectacular
     #   grocery_store (pyproject.toml)
 djangorestframework-simplejwt==5.3.1
     # via djoser
 djoser==2.2.3
     # via grocery_store (pyproject.toml)
+drf-spectacular==0.27.2
+    # via grocery_store (pyproject.toml)
 idna==3.7
     # via requests
+inflection==0.5.1
+    # via drf-spectacular
+jsonschema==4.23.0
+    # via drf-spectacular
+jsonschema-specifications==2023.12.1
+    # via jsonschema
 oauthlib==3.2.2
     # via
     #   requests-oauthlib
@@ -51,17 +65,29 @@ pyjwt==2.8.0
     #   social-auth-core
 python3-openid==3.2.0
     # via social-auth-core
+pyyaml==6.0.1
+    # via drf-spectacular
+referencing==0.35.1
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
 requests==2.32.3
     # via
     #   requests-oauthlib
     #   social-auth-core
 requests-oauthlib==2.0.0
     # via social-auth-core
+rpds-py==0.19.0
+    # via
+    #   jsonschema
+    #   referencing
 social-auth-app-django==5.4.1
     # via djoser
 social-auth-core==4.5.4
     # via social-auth-app-django
 sqlparse==0.5.0
     # via django
+uritemplate==4.1.1
+    # via drf-spectacular
 urllib3==2.2.2
     # via requests
