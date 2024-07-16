@@ -1,11 +1,12 @@
 from django.db.models import F, QuerySet, Sum
 from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
 from api import serializers
-from api.permissions import ReadOnly
+from api.permissions import ReadOnly, IsOwner
 from products.models import Cart, Category, Product
 
 
@@ -27,6 +28,7 @@ class CartViewSet(
     mixins.DestroyModelMixin,
     viewsets.GenericViewSet,
 ):
+    permission_classes = (IsAuthenticated & IsOwner,)
     pagination_class = None
     serializer_class = serializers.CartSerializer
 

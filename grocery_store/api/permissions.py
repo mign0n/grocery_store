@@ -12,3 +12,13 @@ class ReadOnly(permissions.BasePermission):
         obj: Model,
     ) -> bool:
         return request.method in permissions.SAFE_METHODS
+
+
+class IsOwner(permissions.BasePermission):
+    def has_object_permission(
+        self,
+        request: Request,
+        view: ModelViewSet,
+        obj: Model,
+    ) -> bool:
+        return obj.owner == request.user,
