@@ -28,7 +28,7 @@ click==8.1.7
     # via black
 columnar==1.4.1
     # via pymarkdownlnt
-cryptography==42.0.8
+cryptography==43.0.1
     # via social-auth-core
 defusedxml==0.8.0rc2
     # via
